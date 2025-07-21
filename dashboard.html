@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CodeTrackPro</title>
+    
+    <!-- External Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .frosted-glass {
+            backdrop-filter: blur(10px);
+            background: rgba(31, 41, 55, 0.8);
+        }
+        
+        .chart-fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 frosted-glass border-b border-gray-700">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-xl font-bold gradient-text">CodeTrackPro</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#profile" class="hover:text-indigo-400 transition-colors duration-300">Profile</a>
+                    <a href="#charts" class="hover:text-indigo-400 transition-colors duration-300">Charts</a>
+                    <a href="#leaderboard" class="hover:text-indigo-400 transition-colors duration-300">Leaderboard</a>
+                    <a href="#events" class="hover:text-indigo-400 transition-colors duration-300">Events</a>
+                    <a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300">← Back to Home</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <div class="w-6 h-6 flex flex-col justify-around">
+                        <div class="w-full h-0.5 bg-white transition-all duration-300"></div>
+                        <div class="w-full h-0.5 bg-white transition-all duration-300"></div>
+                        <div class="w-full h-0.5 bg-white transition-all duration-300"></div>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="#profile" class="py-2 hover:text-indigo-400 transition-colors duration-300">Profile</a>
+                    <a href="#charts" class="py-2 hover:text-indigo-400 transition-colors duration-300">Charts</a>
+                    <a href="#leaderboard" class="py-2 hover:text-indigo-400 transition-colors duration-300">Leaderboard</a>
+                    <a href="#events" class="py-2 hover:text-indigo-400 transition-colors duration-300">Events</a>
+                    <a href="index.html" class="py-2 text-gray-400 hover:text-white transition-colors duration-300">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- User Profile Section -->
+    <section id="profile" class="py-20 px-4 bg-gray-800/30 mt-16">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Your Coding Profile</h2>
+            
+            <!-- Profile Overview -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                <!-- Profile Card -->
+                <div class="bg-gray-800 rounded-2xl p-8 shadow-lg shadow-indigo-500/20">
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
+                            <span class="text-2xl font-bold">JD</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2" contenteditable="true" id="username">John Developer</h3>
+                        <p class="text-gray-400 mb-4" contenteditable="true" id="bio">Full Stack Engineer passionate about algorithms</p>
+                        <button onclick="shareProfile()" class="bg-indigo-600 hover:bg-indigo-500 px-6 py-2 rounded-full transition-colors duration-300">
+                            Share Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="lg:col-span-2 grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-800 rounded-2xl p-6 shadow-lg shadow-purple-500/20">
+                        <h4 class="text-lg font-semibold mb-4 text-indigo-400">Overall Stats</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span>Total Problems</span>
+                                <span class="font-bold text-indigo-400" id="total-problems">1,247</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Contests Participated</span>
+                                <span class="font-bold text-purple-400" id="contests">89</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>C-Score</span>
+                                <span class="font-bold text-pink-400" id="c-score">2847</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Global Rank</span>
+                                <span class="font-bold text-green-400" id="global-rank">#1,234</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-2xl p-6 shadow-lg shadow-green-500/20">
+                        <h4 class="text-lg font-semibold mb-4 text-green-400">Platform Breakdown</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span>LeetCode</span>
+                                <span class="font-bold text-yellow-400">487</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Codeforces</span>
+                                <span class="font-bold text-blue-400">312</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>HackerRank</span>
+                                <span class="font-bold text-orange-400">298</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>CodeChef</span>
+                                <span class="font-bold text-red-400">150</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+                <h3 class="text-2xl font-bold mb-8 text-center gradient-text">Coding Timeline</h3>
+                <div class="flex overflow-x-auto space-x-8 pb-4" id="timeline">
+                    <!-- Timeline items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Charts Section -->
+    <section id="charts" class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-4 gradient-text">Progress Analytics</h2>
+            <p class="text-xl text-center text-gray-400 mb-12">Visualize your coding journey across all platforms</p>
+            
+            <!-- Platform Switcher -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12" id="platform-switcher">
+                <button onclick="switchPlatform('all')" class="platform-btn bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105" data-platform="all">
+                    All Platforms
+                </button>
+                <button onclick="switchPlatform('leetcode')" class="platform-btn bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105" data-platform="leetcode">
+                    LeetCode
+                </button>
+                <button onclick="switchPlatform('codeforces')" class="platform-btn bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105" data-platform="codeforces">
+                    Codeforces
+                </button>
+                <button onclick="switchPlatform('hackerrank')" class="platform-btn bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105" data-platform="hackerrank">
+                    HackerRank
+                </button>
+                <button onclick="switchPlatform('codechef')" class="platform-btn bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105" data-platform="codechef">
+                    CodeChef
+                </button>
+            </div>
+            
+            <!-- Charts Grid -->
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Problems Solved Chart -->
+                <div class="bg-gray-800 rounded-2xl p-8 shadow-lg chart-fade-in">
+                    <h3 class="text-xl font-bold mb-6 text-indigo-400">Problems Solved</h3>
+                    <div class="relative h-80">
+                        <canvas id="problemsChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Progress Over Time -->
+                <div class="bg-gray-800 rounded-2xl p-8 shadow-lg chart-fade-in">
+                    <h3 class="text-xl font-bold mb-6 text-purple-400">Progress Over Time</h3>
+                    <div class="relative h-80">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Difficulty Distribution -->
+                <div class="bg-gray-800 rounded-2xl p-8 shadow-lg chart-fade-in">
+                    <h3 class="text-xl font-bold mb-6 text-pink-400">Difficulty Distribution</h3>
+                    <div class="relative h-80">
+                        <canvas id="difficultyChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Language Usage -->
+                <div class="bg-gray-800 rounded-2xl p-8 shadow-lg chart-fade-in">
+                    <h3 class="text-xl font-bold mb-6 text-green-400">Language Usage</h3>
+                    <div class="relative h-80">
+                        <canvas id="languageChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard -->
+    <section id="leaderboard" class="py-20 px-4 bg-gray-800/30">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Global Leaderboard</h2>
+            
+            <div class="bg-gray-800 rounded-2xl p-8 shadow-lg">
+                <div class="overflow-x-auto">
+                    <table class="w-full table-auto">
+                        <thead>
+                            <tr class="border-b border-gray-600">
+                                <th class="text-left py-4 px-2 cursor-pointer hover:text-indigo-400">Rank</th>
+                                <th class="text-left py-4 px-2 cursor-pointer hover:text-indigo-400">Developer</th>
+                                <th class="text-left py-4 px-2 cursor-pointer hover:text-indigo-400">C-Score</th>
+                                <th class="text-left py-4 px-2 cursor-pointer hover:text-indigo-400">Problems</th>
+                                <th class="text-left py-4 px-2">Badges</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Tracker -->
+    <section id="events" class="py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Upcoming Events</h2>
+            
+            <!-- Platform Filter -->
+            <div class="flex justify-center mb-8 space-x-4">
+                <button onclick="filterEvents('all')" class="event-filter-btn bg-indigo-600 text-white px-6 py-2 rounded-lg transition-colors" data-filter="all">All</button>
+                <button onclick="filterEvents('leetcode')" class="event-filter-btn bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg transition-colors" data-filter="leetcode">LeetCode</button>
+                <button onclick="filterEvents('codeforces')" class="event-filter-btn bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg transition-colors" data-filter="codeforces">Codeforces</button>
+                <button onclick="filterEvents('hackerrank')" class="event-filter-btn bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg transition-colors" data-filter="hackerrank">HackerRank</button>
+            </div>
+            
+            <!-- Events Grid -->
+            <div id="events-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Bot Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="chat-btn" class="w-16 h-16 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center shadow-lg pulse-glow hover:scale-110 transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chat-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div class="absolute bottom-6 right-6 w-96 h-[500px] bg-gray-800 rounded-2xl shadow-2xl frosted-glass">
+            <div class="flex items-center justify-between p-4 border-b border-gray-700">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-sm font-bold">AI</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">Chat Master Bot</h3>
+                        <p class="text-xs text-gray-400">Online • Ready to help</p>
+                    </div>
+                </div>
+                <button id="close-chat" class="text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="chat-messages" class="flex-1 p-4 h-80 overflow-y-auto">
+                <div class="mb-4 chat-message">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                            <span class="text-xs font-bold">AI</span>
+                        </div>
+                        <div class="bg-purple-600 rounded-lg p-3 max-w-xs">
+                            <p class="text-sm">Hello! I'm your AI coding assistant. I can provide personalized recommendations based on your coding patterns. How can I help you improve your skills today?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 border-t border-gray-700">
+                <div class="flex space-x-2">
+                    <input type="text" id="chat-input" placeholder="Ask me anything..." class="flex-1 bg-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button id="send-chat" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global chart variables
+        let problemsChart = null;
+        let progressChart = null;
+        let difficultyChart = null;
+        let languageChart = null;
+
+        // Initialize all functionality when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            initializeLeaderboard();
+            initializeEvents();
+            initializeTimeline();
+            initializeChatBot();
+            initializeMobileMenu();
+        });
+
+        // Chart initialization
+        function initializeCharts() {
+            // Problems Chart
+            const problemsCtx = document.getElementById('problemsChart').getContext('2d');
+            problemsChart = new Chart(problemsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Easy', 'Medium', 'Hard'],
+                    datasets: [{
+                        data: [487, 312, 156],
+                        backgroundColor: [
+                            '#10B981', // Green - Easy
+                            '#F59E0B', // Yellow - Medium
+                            '#EF4444'  // Red - Hard
+                        ],
+                        borderColor: '#1F2937',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#E5E7EB',
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Progress Chart
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            progressChart = new Chart(progressCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [{
+                        label: 'Problems Solved',
+                        data: [45, 78, 120, 156, 198, 234, 267],
+                        borderColor: '#6366F1',
+                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#6366F1',
+                        pointBorderColor: '#1F2937',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#E5E7EB'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(156, 163, 175, 0.1)'
+                            },
+                            ticks: {
+                                color: '#9CA3AF'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(156, 163, 175, 0.1)'
+                            },
+                            ticks: {
+                                color: '#9CA3AF'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Difficulty Chart
+            const difficultyCtx = document.getElementById('difficultyChart').getContext('2d');
+            difficultyChart = new Chart(difficultyCtx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['Easy', 'Medium', 'Hard', 'Expert'],
+                    datasets: [{
+                        data: [487, 312, 156, 45],
+                        backgroundColor: [
+                            'rgba(16, 185, 129, 0.7)', // Green - Easy
+                            'rgba(245, 158, 11, 0.7)', // Yellow - Medium
+                            'rgba(239, 68, 68, 0.7)',  // Red - Hard
+                            'rgba(139, 92, 246, 0.7)'  // Purple - Expert
+                        ],
+                        borderColor: [
+                            '#10B981',
+                            '#F59E0B',
+                            '#EF4444',
+                            '#8B5CF6'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#E5E7EB',
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(156, 163, 175, 0.2)'
+                            },
+                            pointLabels: {
+                                color: '#9CA3AF'
+                            },
+                            ticks: {
+                                color: '#9CA3AF',
+                                backdropColor: 'transparent'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Language Chart
+            const languageCtx = document.getElementById('languageChart').getContext('2d');
+            languageChart = new Chart(languageCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['JavaScript', 'Python', 'Java', 'C++', 'Go', 'Rust'],
+                    datasets: [{
+                        label: 'Hours Coded',
+                        data: [120, 98, 85, 67, 45, 23],
+                        backgroundColor: [
+                            '#F7DF1E', // JavaScript Yellow
+                            '#3776AB', // Python Blue
+                            '#ED8B00', // Java Orange
+                            '#00599C', // C++ Blue
+                            '#00ADD8', // Go Cyan
+                            '#CE422B'  // Rust Orange
+                        ],
+                        borderColor: '#1F2937',
+                        borderWidth: 1,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#E5E7EB'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(156, 163, 175, 0.1)'
+                            },
+                            ticks: {
+                                color: '#9CA3AF'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(156, 163, 175, 0.1)'
+                            },
+                            ticks: {
+                                color: '#9CA3AF'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Platform switching functionality
+        function switchPlatform(platform) {
+            console.log('Switching to platform:', platform);
+            
+            // Update button styles
+            document.querySelectorAll('.platform-btn').forEach(btn => {
+                if (btn.dataset.platform === platform) {
+                    btn.className = 'platform-btn bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105';
+                } else {
+                    btn.className = 'platform-btn bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105';
+                }
+            });
+
+            // Update chart data based on platform
+            // This would normally fetch data from an API
+            updateChartsForPlatform(platform);
+        }
+
+        function updateChartsForPlatform(platform) {
+            // Sample data updates for different platforms
+            const platformData = {
+                'all': {
+                    problems: [487, 312, 156],
+                    progress: [45, 78, 120, 156, 198, 234, 267],
+                    difficulty: [487, 312, 156, 45],
+                    languages: [120, 98, 85, 67, 45, 23]
+                },
+                'leetcode': {
+                    problems: [287, 150, 50],
+                    progress: [20, 45, 70, 95, 125, 150, 170],
+                    difficulty: [287, 150, 50, 0],
+                    languages: [80, 60, 45, 30, 20, 10]
+                },
+                'codeforces': {
+                    problems: [100, 80, 60],
+                    progress: [10, 20, 30, 40, 50, 65, 80],
+                    difficulty: [100, 80, 60, 30],
+                    languages: [40, 30, 25, 20, 15, 8]
+                }
+            };
+
+            const data = platformData[platform] || platformData['all'];
+
+            // Update charts with new data
+            if (problemsChart) {
+                problemsChart.data.datasets[0].data = data.problems;
+                problemsChart.update();
+            }
+
+            if (progressChart) {
+                progressChart.data.datasets[0].data = data.progress;
+                progressChart.update();
+            }
+
+            if (difficultyChart) {
+                difficultyChart.data.datasets[0].data = data.difficulty;
+                difficultyChart.update();
+            }
+
+            if (languageChart) {
+                languageChart.data.datasets[0].data = data.languages;
+                languageChart.update();
+            }
+        }
+
+        // Initialize leaderboard
+        function initializeLeaderboard() {
+            const leaderboardData = [
+                { rank: 1, username: 'CodeMaster99', cscore: 3456, problems: 2340, badges: '🏆🥇⭐' },
+                { rank: 2, username: 'AlgoGuru', cscore: 3234, problems: 2100, badges: '🥈⭐' },
+                { rank: 3, username: 'DeepThought', cscore: 3102, problems: 1987, badges: '🥉⭐' },
+                { rank: 4, username: 'PythonNinja', cscore: 2987, problems: 1865, badges: '⭐' },
+                { rank: 5, username: 'JavaGenius', cscore: 2847, problems: 1756, badges: '⭐' },
+                { rank: 1234, username: 'John Developer', cscore: 2847, problems: 1247, badges: '🔥' }
+            ];
+
+            const tbody = document.getElementById('leaderboard-body');
+            tbody.innerHTML = leaderboardData.map(user => `
+                <tr class="border-b border-gray-700 hover:bg-gray-700/20">
+                    <td class="py-4 px-2">#${user.rank}</td>
+                    <td class="py-4 px-2 font-semibold">${user.username}</td>
+                    <td class="py-4 px-2 text-indigo-400">${user.cscore}</td>
+                    <td class="py-4 px-2">${user.problems}</td>
+                    <td class="py-4 px-2">${user.badges}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Initialize events
+        function initializeEvents() {
+            const eventsData = [
+                { title: 'Weekly Contest 392', platform: 'leetcode', time: '2024-07-21 10:30', duration: '1.5 hours' },
+                { title: 'Codeforces Round #950', platform: 'codeforces', time: '2024-07-22 14:00', duration: '2 hours' },
+                { title: 'HackerRank Challenge', platform: 'hackerrank', time: '2024-07-23 09:00', duration: '3 hours' }
+            ];
+
+            const grid = document.getElementById('events-grid');
+            grid.innerHTML = eventsData.map(event => `
+                <div class="bg-gray-800 rounded-2xl p-6 shadow-lg hover:transform hover:scale-105 transition-all duration-300">
+                    <h3 class="text-lg font-bold mb-2 text-indigo-400">${event.title}</h3>
+                    <p class="text-sm text-gray-400 mb-2">${event.platform.toUpperCase()}</p>
+                    <p class="text-sm text-gray-300 mb-1">📅 ${event.time}</p>
+                    <p class="text-sm text-gray-300">⏱️ ${event.duration}</p>
+                </div>
+            `).join('');
+        }
+
+        function filterEvents(filter) {
+            console.log('Filtering events by:', filter);
+            // Update filter button styles
+            document.querySelectorAll('.event-filter-btn').forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.className = 'event-filter-btn bg-indigo-600 text-white px-6 py-2 rounded-lg transition-colors';
+                } else {
+                    btn.className = 'event-filter-btn bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg transition-colors';
+                }
+            });
+            // Filter logic would be implemented here
+        }
+
+        // Initialize timeline
+        function initializeTimeline() {
+            const timelineData = [
+                { date: '2024-07-21', activity: 'Solved 3 problems', platform: 'LeetCode' },
+                { date: '2024-07-20', activity: 'Participated in contest', platform: 'Codeforces' },
+                { date: '2024-07-19', activity: 'Achieved new badge', platform: 'HackerRank' }
+            ];
+
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = timelineData.map(item => `
+                <div class="bg-gray-700 rounded-lg p-4 min-w-64">
+                    <div class="text-sm text-gray-400">${item.date}</div>
+                    <div class="font-semibold">${item.activity}</div>
+                    <div class="text-sm text-indigo-400">${item.platform}</div>
+                </div>
+            `).join('');
+        }
+
+        // Chat bot functionality
+        function initializeChatBot() {
+            const chatBtn = document.getElementById('chat-btn');
+            const chatModal = document.getElementById('chat-modal');
+            const closeChat = document.getElementById('close-chat');
+            const sendChat = document.getElementById('send-chat');
+            const chatInput = document.getElementById('chat-input');
+
+            chatBtn.addEventListener('click', () => {
+                chatModal.classList.remove('hidden');
+            });
+
+            closeChat.addEventListener('click', () => {
+                chatModal.classList.add('hidden');
+            });
+
+            sendChat.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            
+            if (input.value.trim()) {
+                // Add user message
+                messages.innerHTML += `
+                    <div class="mb-4 chat-message flex justify-end">
+                        <div class="bg-indigo-600 rounded-lg p-3 max-w-xs">
+                            <p class="text-sm">${input.value}</p>
+                        </div>
+                    </div>
+                `;
+
+                // Add AI response (simulated)
+                setTimeout(() => {
+                    messages.innerHTML += `
+                        <div class="mb-4 chat-message">
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                    <span class="text-xs font-bold">AI</span>
+                                </div>
+                                <div class="bg-purple-600 rounded-lg p-3 max-w-xs">
+                                    <p class="text-sm">That's a great question! Based on your coding patterns, I'd recommend focusing on dynamic programming problems to improve your algorithmic thinking.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    messages.scrollTop = messages.scrollHeight;
+                }, 1000);
+
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+
+        // Mobile menu functionality
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Other utility functions
+        function shareProfile() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My CodeTrackPro Profile',
+                    text: 'Check out my coding progress on CodeTrackPro!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                navigator.clipboard.writeText(window.location.href);
+                alert('Profile URL copied to clipboard!');
+            }
+        }
+    </script>
+</body>
+</html>

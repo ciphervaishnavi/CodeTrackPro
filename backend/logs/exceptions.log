@@ -1,0 +1,120 @@
+2025-07-21 01:09:16:916 [31merror[39m: [31muncaughtException: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31mError: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1244:15)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1070:27)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1335:12)[39m
+[31m    at require (node:internal/modules/helpers:136:16)[39m
+[31m    at Object.<anonymous> (D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js:5:30)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1562:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1699:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1313:32)[39m
+2025-07-21 01:10:17:1017 [31merror[39m: [31muncaughtException: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31mError: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1244:15)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1070:27)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1335:12)[39m
+[31m    at require (node:internal/modules/helpers:136:16)[39m
+[31m    at Object.<anonymous> (D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js:5:30)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1562:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1699:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1313:32)[39m
+2025-07-21 01:12:00:120 [31merror[39m: [31muncaughtException: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31mError: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1244:15)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1070:27)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1335:12)[39m
+[31m    at require (node:internal/modules/helpers:136:16)[39m
+[31m    at Object.<anonymous> (D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js:5:30)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1562:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1699:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1313:32)[39m
+2025-07-21 01:13:06:136 [31merror[39m: [31muncaughtException: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31mError: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1244:15)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1070:27)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1335:12)[39m
+[31m    at require (node:internal/modules/helpers:136:16)[39m
+[31m    at Object.<anonymous> (D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js:5:30)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1562:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1699:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1313:32)[39m
+2025-07-21 01:14:38:1438 [31merror[39m: [31muncaughtException: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31mError: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1244:15)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1070:27)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1335:12)[39m
+[31m    at require (node:internal/modules/helpers:136:16)[39m
+[31m    at Object.<anonymous> (D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js:5:30)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1562:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1699:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1313:32)[39m
+2025-07-21 01:15:05:155 [31merror[39m: [31muncaughtException: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31mError: Cannot find module '../services/platformSync'[39m
+[31mRequire stack:[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\routes\statsRoutes.js[39m
+[31m- D:\projexct\CodeTrackPro\CodeTrackPro\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1244:15)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1070:27)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1335:12)[39m
+[31m    at require (node:internal/modules/helpers:136:16)[39m
+[31m    at Object.<anonymous> (D:\projexct\CodeTrackPro\CodeTrackPro\backend\controllers\statsController.js:5:30)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1562:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1699:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1313:32)[39m
